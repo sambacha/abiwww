@@ -12,9 +12,11 @@ const app = express();
 
 // middlewares
 app.use(compression());
-app.use(cors({
-    origin: process.env.ORIGIN
-}));
+app.use(
+  cors({
+    origin: process.env.ORIGIN,
+  }),
+);
 app.use(express.json({ limit: '50mb' }));
 app.use(initTokenAuth());
 
@@ -28,13 +30,13 @@ app.use(oEmbedRouter);
 app.use(globalErrorHandler);
 
 connectToDB().then(
-    () => {
-        const port = parseInt(process.env.PORT, 10) || 80;
-        console.log('Successfully connected to database');
-        app.listen(port, () => console.log(`Project services API is listening on port ${port}`));
-    },
-    (err: MongoError) => {
-        console.error('Unable to start project services API. Could not connect to database:', err);
-        process.exit(1);
-    }
+  () => {
+    const port = parseInt(process.env.PORT, 10) || 80;
+    console.log('Successfully connected to database');
+    app.listen(port, () => console.log(`Project services API is listening on port ${port}`));
+  },
+  (err: MongoError) => {
+    console.error('Unable to start project services API. Could not connect to database:', err);
+    process.exit(1);
+  },
 );
