@@ -4,8 +4,10 @@
   "private": true,
   "main": "dist/index.js",
   "scripts": {
-    "start": "nodemon",
-    "build": "tsc",
+    "lint:ts": "npx eslint . --fix",
+    "start": "npx nodemon",
+    "test": "npx jest -u",
+    "build": "npx tsc -b",
     "start:prod": "node -r ./tsconfig-paths-bootstrap.js dist/api/app.js"
   },
   "license": "SEE LICENSE IN LICENSE",
