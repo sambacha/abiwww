@@ -1,0 +1,6 @@
+dist/
+build/
+*.html
+*.css
+*.scss
+output/
