@@ -38,16 +38,22 @@ export class Project {
         });
     }
 
-    get id() { return this.persistedModel._id.toHexString(); }
+    get id() {
+        return this.persistedModel._id.toHexString();
+    }
 
-    get persisted(): IPersistedProjectModel { return this.persistedModel; }
+    get persisted(): IPersistedProjectModel {
+        return this.persistedModel;
+    }
 
     get exposed() {
         const { _id, anonymousToken, ...data } = this.persistedModel;
         return { ...data, id: _id };
     }
 
-    get anonymousToken() { return this.persistedModel.anonymousToken; }
+    get anonymousToken() {
+        return this.persistedModel.anonymousToken;
+    }
 
     update(name: string, description: string, files: any, userId?: string, anonymousToken?: string) {
         if (this.canBeUpdatedBy(userId, anonymousToken)) {

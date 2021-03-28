@@ -5,7 +5,9 @@ import { ApiError } from 'app';
 export let db: Db | null = null;
 
 export async function connectToDB(): Promise<void> {
-    if (db) { return Promise.resolve(); }
+    if (db) {
+        return Promise.resolve();
+    }
 
     return MongoClient.connect(process.env.MONGO_URL, { useNewUrlParser: true })
         .then((client: MongoClient) => {
