@@ -4,6 +4,12 @@ import { projectsRepository } from 'infrastructure-mongodb';
 
 export const oEmbedRouter = express.Router();
 
+/**
+* @GET
+* @param oEmbedRouter
+* @returns projectsRepository
+* @tags /oembed
+*/
 oEmbedRouter.get('/oembed', async (req, res) => {
   const oEmbedQuery = new OEmbedQuery(projectsRepository);
   //  const result = typeof req.query.url == "string" ? req.query.url : await oEmbedQuery.execute(req.query.url);
