@@ -1,0 +1,31 @@
+ {
+   "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "files": [
+    "build",
+    "README.md",
+    "schema"
+  ],
+  "scripts": {
+    "prepare": "npm run build",
+    "types": "./node_modules/.bin/typegen ./schema/openapi.json > ./schema/openapi.d.ts",
+    "prebuild": "rm -rf ./build",
+    "build": "tsc"
+  },
+  "author": "CommodityStream LLC",
+  "license": "SEE LICENSE IN LICENSE",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "debug": "4.3.1",
+    "openapi-client-axios": "^3.13.1",
+    "source-map-support": "0.5.19"
+  },
+  "devDependencies": {
+    "@apidevtools/json-schema-ref-parser": "^9.0.7",
+    "@openapitools/openapi-generator-cli": "^2.1.23",
+    "@types/debug": "4.1.5",
+    "@types/node": "^14.14.30",
+    "openapi-client-axios-typegen": "^3.13.1",
+    "typescript": "4.1.3"
+  }
+}
