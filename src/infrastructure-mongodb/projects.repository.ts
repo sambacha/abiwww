@@ -1,15 +1,15 @@
 /**
-* @file Projects Repository
-*/
+ * @file Projects Repository
+ */
 import { IProjectsRepository, ApiError } from 'app';
 import { Project, IPersistedProjectModel } from 'app-domain';
 import { repository } from './db';
 import { ObjectId } from 'mongodb';
 
 /**
-* @const projectsRepository
-* @param getById
-*/
+ * @const projectsRepository
+ * @param getById
+ */
 export const projectsRepository: IProjectsRepository = {
   async getById(id: string): Promise<Project> {
     const persisted = await repository.projects.findOne({ _id: new ObjectId(id) });
@@ -17,10 +17,10 @@ export const projectsRepository: IProjectsRepository = {
   },
 
   /**
-  * @getUserProjects
-  * @param userId
-  * @type {string}
-  */
+   * @getUserProjects
+   * @param userId
+   * @type {string}
+   */
   async getUserProjects(userId: string): Promise<IPersistedProjectModel[]> {
     return await (
       await repository.projects.find(
@@ -28,18 +28,18 @@ export const projectsRepository: IProjectsRepository = {
         { projection: { _id: 1, name: 1, createdAt: 1, lastModifiedAt: 1, description: 1 } },
       )
     ).toArray();
-},
+  },
 
   /**
-  * @create
-  * @type {Object}
-  */
+   * @create
+   * @type {Object}
+   */
   async create(project: Project): Promise<void> {
     const operation = await repository.projects.insertOne(project.persisted);
     if (!operation.result.ok) {
       throw new ApiError('Cannot create project in DB', 500);
     }
-},
+  },
 
   async update(project: Project): Promise<void> {
     const operation = await repository.projects.replaceOne(
@@ -49,7 +49,7 @@ export const projectsRepository: IProjectsRepository = {
     if (!operation.result.ok) {
       throw new ApiError('Cannot update project in DB', 500);
     }
-},
+  },
 
   async delete(id: string): Promise<void> {
     const operation = await repository.projects.deleteOne({ _id: new ObjectId(id) });

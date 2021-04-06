@@ -21,21 +21,21 @@ app.use(
 app.use(express.json({ limit: '50mb' }));
 app.use(initTokenAuth());
 
-/** 
-* @GET 
-* @param routes 
-*/
+/**
+ * @GET
+ * @param routes
+ */
 
 const apiPrefix = '/v1';
 app.use(apiPrefix, healthCheckRouter);
 app.use(apiPrefix, projectsRouter);
 app.use(oEmbedRouter);
 
-/** 
-* @app globalErrorHandler
-* 
-* @summary error handler 
-*/
+/**
+ * @app globalErrorHandler
+ *
+ * @summary error handler
+ */
 
 app.use(globalErrorHandler);
 
