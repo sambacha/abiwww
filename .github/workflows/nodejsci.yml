@@ -1,4 +1,4 @@
-name: nodejs
+name: nodejsci
 
 on: ['push']
 
@@ -21,7 +21,7 @@ jobs:
           restore-keys: npm-
 
       - name: Install
-        run: npm ci
+        run: npm install
 
       - name: Build
         run: npm run build
