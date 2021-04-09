@@ -1,6 +1,6 @@
 /** @file Application */
 import * as express from 'express';
-require('express-async-errors'); // hack to make express handle exceptions in async functions
+require('express-async-errors'); /** @note hack to make express handle exceptions in async functions */
 import { MongoError } from 'mongodb';
 import { connectToDB } from 'infrastructure-mongodb';
 import * as compression from 'compression';
@@ -63,4 +63,4 @@ connectToDB().then(
     process.exit(1);
   },
 );
-/** @exports serviceAPI *.
+/** @exports serviceAPI */
