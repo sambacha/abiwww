@@ -39,14 +39,28 @@ app.use(oEmbedRouter);
 
 app.use(globalErrorHandler);
 
+/**
+const pjson = require("../../../package.json");
+const bannerBytes = Buffer.from(fs.readFileSync(path.join(__dirname, "./../banner.txt")));
+
+router.get("/", (req, res) => {
+    res.set("content-type", "text/html");
+    res.write("<div style=\"color: #4a203b\"><pre>");
+    res.write(bannerBytes);
+    res.write(`</pre>${pjson.name}@${pjson.version}</div>`);
+    res.end();
+});
+*/
+
 connectToDB().then(
   () => {
     const port = parseInt(process.env.PORT, 10) || 80;
     console.log('✅ Successfully connected to mongo database');
-    app.listen(port, () => console.log(`✅  ABI API is listening on port ${port}`));
+    app.listen(port, () => console.log(`✅ Service API is listening on port ${port}`));
   },
   (err: MongoError) => {
     console.error('Unable to start project services API. Could not connect to database:', err);
     process.exit(1);
   },
 );
+/** @exports serviceAPI *.
